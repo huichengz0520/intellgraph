@@ -190,7 +190,7 @@ class Graphfxn {
   Node<T>* input_node_ptr_{nullptr};
 
   std::unordered_map<size_t, NodeUPtr<T>> node_map_{};
-  std::unordered_map<size_t, EdgeUPtr<T>> edge_map_{};
+  std::unordered_map<size_t, EdgeIfUPtr<T>> edge_map_{};
 
   // Topological sorting result
   std::vector<size_t> order_{};

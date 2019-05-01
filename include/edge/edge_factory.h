@@ -47,7 +47,7 @@ class EdgeFactory {
     std::string name = edge_param.ref_edge_name();
     auto it = EdgeFactory::Registry().find(name);
     if (it == EdgeFactory::Registry().end() ) {
-      LOG(ERROR) << "Instantiate Edge " << name << "is failed";
+      LOG(ERROR) << "Instantiate Edge " << name << " is failed";
       return nullptr;
     } else {
       return (it->second)(edge_param);

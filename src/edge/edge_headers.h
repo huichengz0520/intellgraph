@@ -12,9 +12,24 @@ limitations under the License.
 Contributor(s):
 	Lingbo Zhang <lingboz2015@gmail.com>
 ==============================================================================*/
+#ifndef INTELLGRAPH_EDGE_EDGE_HEADERS_H_
+#define INTELLGRAPH_EDGE_EDGE_HEADERS_H_
+
 // Contains edge headers
 #include "edge/dense_edge.h"
 #include "edge/edge.h"
+#include "edge/edge.cc"
 #include "edge/edge_factory.h"
+#include "edge/edge_interface.h"
 #include "edge/edge_parameter.h"
 #include "edge/edge_registry.h"
+
+namespace intellgraph {
+
+// Explicit template instantiations
+template class Edge<float, DenseEdge<float>>;
+template class Edge<double, DenseEdge<double>>;
+
+}
+
+#endif  // INTELLGRAPH_EDGE_EDGE_HEADERS_H_

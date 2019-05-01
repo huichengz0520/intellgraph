@@ -82,9 +82,9 @@ namespace devimpl {
 // initialization)
 #define DEVIMPL_REGISTER_NODE(classname, base) \
   static const NodeFactoryRegister<float, base<float>, classname<float>> \
-      register_f_##classname##_##base; \
+      register_f_##classname##_##base(#classname); \
   static const NodeFactoryRegister<double, base<double>, classname<double>> \
-      register_d_##classname##_##base;
+      register_d_##classname##_##base(#classname);
 
 #define DEVIMPL_REGISTERIMPL_NODE(classname, base) \
   static const NodeFactoryRegister<float, base<float>, classname<float>> \

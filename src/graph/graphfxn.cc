@@ -117,7 +117,8 @@ void Graphfxn<T>::Create() {
   }
   // Instantiates edge objects;
   for (const auto& edge_pair : edge_param_map_) {
-    EdgeUPtr<T> edge_ptr = std::move(EdgeFactory<T, Edge<T>>::Instantiate( \
+    EdgeIfUPtr<T> edge_ptr = \
+        std::move(EdgeFactory<T, EdgeInterface<T>>::Instantiate( \
         edge_pair.second));
     // Initializes weight matrix with standard normal distribution
     LOG(INFO) << "Initializes edge: " << edge_pair.first
@@ -258,7 +259,7 @@ void Graphfxn<T>::Derivative(const Eigen::Ref<const MatXX<T>>& training_data, \
       size_t edge_id = graph_[*ei].id;
 
       Node<T> *node_in_ptr, *node_out_ptr;
-      Edge<T> *edge_ptr;
+      EdgeInterface<T> *edge_ptr;
 
       node_in_ptr = node_map_[vtx_in_id].get();
       node_out_ptr = node_map_[vtx_out_id].get();

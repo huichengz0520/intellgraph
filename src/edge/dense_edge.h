@@ -26,33 +26,31 @@ Contributor(s):
 #include "utility/random.h"
 
 namespace intellgraph {
+
 // DenseEdge is an edge class that used to build fully connected neural networks.
 // In DenseEdge, weight is updated based on the backpropagation. 
 template <class T>
-class DenseEdge : public Edge<T> {
+class DenseEdge : public Edge<T, DenseEdge<T>> {
  public:
   DenseEdge() noexcept = default;
 
-  explicit DenseEdge(REF const EdgeParameter& edge_param)
-      : Edge<T>(edge_param) {}
+  explicit DenseEdge(REF const EdgeParameter& edge_param);
   
   // Move constructor
-  DenseEdge(MOVE DenseEdge<T>&& rhs) noexcept = default;
+  DenseEdge(MOVE DenseEdge<T>&& rhs) = default;
 
   // Move operator
-  DenseEdge& operator=(MOVE DenseEdge<T>&& rhs) noexcept = default;
+  DenseEdge& operator=(MOVE DenseEdge<T>&& rhs) = default;
 
-  // Copy constructor and operator are deleted
+  // Copy constructor and operator are explicitly deleted
   DenseEdge(REF const DenseEdge<T>& rhs) = delete;
   DenseEdge& operator=(REF const DenseEdge<T>& rhs) = delete;
 
   ~DenseEdge() noexcept final = default;
 
-  virtual void Forward(MUTE Node<T>* node_in_ptr, \
-                       MUTE Node<T>* node_out_ptr) final;
+  void Forward(MUTE Node<T>* node_in_ptr, MUTE Node<T>* node_out_ptr);
 
-  virtual void Backward(MUTE Node<T>* node_in_ptr, \
-                        MUTE Node<T>* node_out_ptr) final;
+  void Backward(MUTE Node<T>* node_in_ptr, MUTE Node<T>* node_out_ptr);
 
 };
 // Alias for unique dense edge pointer

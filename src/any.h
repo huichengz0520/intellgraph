@@ -1,4 +1,4 @@
-/* Copyright 2019 The Nicole Authors. All Rights Reserved.
+/* Copyright 2019 The IntellGraph Authors. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,30 +12,30 @@ limitations under the License.
 Contributor(s):
 	Lingbo Zhang <lingboz2015@gmail.com>
 ==============================================================================*/
-#ifndef NICOLE_EDGE_EDGE_REGISTRY_H_
-#define NICOLE_EDGE_EDGE_REGISTRY_H_
+#ifndef INTELLGRAPH_ANY_H_
+#define INTELLGRAPH_ANY_H_
 
-#include "edge/dense_edge.h"
-#include "edge/edge_factory.h"
-#include "edge/edge_parameter.h"
-#include "edge/edge.h"
-#include "glog/logging.h"
+#include "utility/auxiliary_cpp.h"
 
 namespace intellgraph {
-
-class EdgeRegistry {
+// In current Intellgraph, we use the static polymorphism model proposed by 
+// Nicolas Burrus, et al.(please refer "A static and complete object-oriented 
+// model in C++ mixing benefits of traditional OOP and static programming" in 
+// references/ directory.
+template <class Instance>
+class Any {
  public:
-  EdgeRegistry() = delete;
+  Any() noexcept = default;
 
-  ~EdgeRegistry() = delete;
+  virtual ~Any() noexcept = default;
 
-  static void LoadEdgeRegistry() {
-    // Registers DenseEdge
-    LOG(INFO) << "Registering DenseEdge"; 
-    DEVIMPL_REGISTERIMPL_EDGE(DenseEdge, EdgeInterface);
+  // Gets acutal instance
+  MUTE Instance& ref_instance() {
+    return *static_cast<Instance*>(this);
   }
+
 };
 
 }  // intellgraph
 
-#endif  // NICOLE_EDGE_EDGE_REGISTRY_H_
+#endif  // INTELLGRAPH_ANY_H_

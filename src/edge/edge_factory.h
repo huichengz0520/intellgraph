@@ -79,16 +79,16 @@ namespace devimpl {
 // classes should be added as a dynamic library (see force static variable
 // initialization)
 #define DEVIMPL_REGISTER_EDGE(classname, base) \
-  static const EdgeFactoryRegister<float, base<float>, classname<float>> \
-      register_f_##classname##_##base; \
-  static const EdgeFactoryRegister<double, base<double>, classname<double>> \
-      register_d_##classname##_##base;
+  static const EdgeFactoryRegister<float, base<float>, \
+      classname<float>> register_f_##classname##_##base(#classname); \
+  static const EdgeFactoryRegister<double, base<double>, \
+      classname<double>> register_d_##classname##_##base(#classname);
 
 #define DEVIMPL_REGISTERIMPL_EDGE(classname, base) \
-  static const EdgeFactoryRegister<float, base<float>, classname<float>> \
-      register_f_##classname##_##base(#classname); \
-  static const EdgeFactoryRegister<double, base<double>, classname<double>> \
-      register_d_##classname##_##base(#classname);
+  static const EdgeFactoryRegister<float, base<float>, \
+      classname<float>> register_f_##classname##_##base(#classname); \
+  static const EdgeFactoryRegister<double, base<double>, \
+      classname<double>> register_d_##classname##_##base(#classname);
 
 }  // devimp
 

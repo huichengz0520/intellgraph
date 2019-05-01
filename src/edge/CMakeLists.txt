@@ -5,6 +5,9 @@ project(edge)
 file(GLOB edge_source *.cc)
 file(GLOB edge_header *.h)
 
+add_executable(edge_exec ${edge_source})
+target_link_libraries(edge_exec node ${CONAN_LIBS})
+
 add_library(edge SHARED STATIC ${edge_source})
 
 install(TARGETS edge DESTINATION ${INTELLGRAPH_INSTALL_LIB_DIR}/edge)
