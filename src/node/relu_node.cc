@@ -26,10 +26,7 @@ void ReLUNode<T>::Activate() {
     for (size_t j = 0; j < this->get_activation_ptr()->cols(); ++j) {
       if (this->get_activation_ptr()->matrix()(i, j) < 0) {
         this->get_activation_ptr()->matrix()(i, j) = 0;
-      } else if (this->get_activation_ptr()->matrix()(i, j) == 0) {
-        this->get_activation_ptr()->matrix()(i, j) += \
-            std::numeric_limits<T>::min();
-      }
+      } 
     }
   }
 }
