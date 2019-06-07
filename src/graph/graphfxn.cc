@@ -124,7 +124,7 @@ void Graphfxn<T>::Create() {
     LOG(INFO) << "Initializes edge: " << edge_pair.first
               << ", with normal distribution";
     size_t weight_row = edge_ptr->get_weight_ptr()->rows();
-    edge_ptr->InitializeWeight(NormalFunctor<T>(0.0, 1.0 / sqrt(weight_row)));
+    edge_ptr->InitializeWeight(NormalFunctor<T>(0.0, sqrt(2.0 / weight_row)));
     edge_map_[edge_pair.first] = std::move(edge_ptr);
   }
 

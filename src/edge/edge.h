@@ -26,8 +26,8 @@ Contributor(s):
 
 namespace intellgraph {
 // In IntellGraph, edge is a basic building block that is used to connect between 
-// two nodes. It is an abstract class for all edge classes and has four member 
-// functions
+// two nodes. It is a base class for all edge classes and is implemented with
+// static polymorphism.
 template <class T, class Instance>
 class Edge : public Any<Instance>, implements EdgeInterface<T> {
  public:
@@ -94,10 +94,3 @@ using EdgeUPtr = std::unique_ptr<Edge<T, Impl>>;
 }  // namespace intellgraph
 
 #endif  // INTELLGRAPH_EDGE_EDGE_H_
-
-
-
-
-
-
-
